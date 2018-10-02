@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <form name="form">
+
+            <label for="">ID</label>
+            <select name="id" name="id">
+                <option value="001">001</option>
+                <option value="002">002</option>
+                <option value="003">003</option>
+                <option value="004">004</option>
+                <option value="005">005</option>
+                <option value="006">006</option>
+                <option value="007">007</option>
+                <option value="008">008</option>
+                <option value="009">009</option>
+                <option value="010">010</option>
+            </select>
+            <br>
+
+            <label for="">Name</label>
+            <input type="text" name="name"><br>
+
+
+            <label for="">Type</label>
+            <input type="radio" value="one" name="type">One
+            <input type="radio" value="two" name="type">Two
+            <input type="radio" value="three" name="type">Three
+            <br>
+
+            <label for="">YourNum</label>
+            <input type="text" name="urnum"><br>
+
+            <input type="button" onclick="myClick()" value="Click">
+
+
+
+
+
+        </form>
+        <div id="mydata">
+
+        </div>
+
+    </div>
+    <script>
+        function isPrime(n) {
+            var help = true
+            for (var i = 2; i <= n - 1; i++) {
+                if (n % i == 0){ help = false;
+                break;}
+            }
+            return help;
+        }
+
+        alert(isPrime(9));
+
+        function getRandom(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+        var table = "<table  border='1px' style='border-collapse: collapse'>"
+
+        
+        var row="";
+ 
+        function myClick() {
+            var table = "<table border=1>";
+
+            var id = document.form.id.value;
+            var name = document.form.name.value;
+            var type = document.form.type.value;
+            var urnum = document.form.urnum.value;
+
+            var max, min;
+            if (type == "one") {
+                max = 9;
+                min = 0;
+            } else if (type == "two") {
+                max = 99;
+                min = 10;
+            } else {
+                min = 100;
+                max = 999;
+            }
+            var result = getRandom(min, max);
+            //alert(isPrime(9));
+            if (isPrime(result)) {
+                row += "<tr style='background-color:red'>" +
+                    `<td>` + id + `</td>
+                    <td>` + name + `</td>
+                     <td>` + urnum + `</td> 
+                    <td>` + result +`</td>`;
+
+                if (result == urnum) {
+                    row += `<td>Win</td>`;
+                } else {
+                    row += `<td>Lost</td>`;
+                }
+                row += "</tr>";
+            } else {
+                row += "<tr>" +
+                    `<td>` + id + `</td>
+                     <td>` + name + `</td>
+                     <td>` + urnum +`</td>
+                     <td>` + result +`</td>`;
+                if (result == urnum) {
+                    row += `<td>Win</td>`;
+                } else {
+                    row += `<td>Lost</td>`
+                }
+                row += "</tr>";
+            }
+            table+=row+"</table>";
+            document.getElementById("mydata").innerHTML = table;
+        }
+    </script>
+</body>
+
+</html>
